@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./NavBar.css"
+import "./NavBar.css";
+import Carrito from "../Carrito/Carrito.js";
 
 const NavBar = () => {
   return (
@@ -19,7 +20,7 @@ const NavBar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="collapsibleNavId">
+        <div className="collapse navbar-collapse justify-content-between" id="collapsibleNavId">
           <ul className="navbar-nav mr-auto mt-2 mt-lg-0 navBarHover">
             <li className="nav-item mx-2">
               <a className="nav-link" href="#">
@@ -41,7 +42,9 @@ const NavBar = () => {
                 Yeezys
               </a>
             </li>
+            
           </ul>
+          <Carrito/>
         </div>
       </div>
     </nav>
