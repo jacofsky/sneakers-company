@@ -1,15 +1,25 @@
 import React from 'react';
 import './App.css';
 import NavBar from './Componentes/NavBar/NavBar.js'
-import ItemListContainer from './Componentes/ItemListContainer/ItemListContainer.js'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+
+import Home from './Views/Home/Home.js'
+import Detalle from './Views/Detalle/Detalle.js'
+
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <NavBar />
-        <ItemListContainer greeting="Bienvenido a nuestra tienda!"/>
-      </div>
+      <Router>
+        <div className="App">
+          <NavBar />
+          <Switch>
+            <Route path="/" exact component={Home}/>
+            <Route path="/detalle/:id" component={Detalle}/>
+
+          </Switch>
+        </div>
+      </Router>
     );
   }
   

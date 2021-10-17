@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Button } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
@@ -16,7 +17,7 @@ const SneakerCard = ({sneakerInfo}) => {
                     <Card.Text>
                     {sneakerInfo.estimatedMarketValue}$
                     </Card.Text>
-                    <Button>Mas informacion</Button>
+                    <Link to={`/Detalle/${sneakerInfo.name}`}><Button> Mas informacion</Button></Link>
             </Card.Body>
             </Card>
         </div>
