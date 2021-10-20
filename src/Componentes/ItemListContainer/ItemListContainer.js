@@ -8,7 +8,7 @@ const ItemListContainer = ({greeting}) => {
     return (
         <div>
             <h1 className="greetingStyle">{greeting}</h1>
-            <ItemCount stock={12} initial={1} />
+            
             <SneakerList/>
         </div>
     )

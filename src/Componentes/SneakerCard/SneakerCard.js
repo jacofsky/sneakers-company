@@ -11,13 +11,13 @@ const SneakerCard = ({sneakerInfo}) => {
     return (
         <div className="sneakerCard col-12 col-md-3 py-2">
             <Card style={{ width: '18rem', margin: '0 auto' }}>
-                <Card.Img variant="top" src={sneakerInfo.image.original ? sneakerInfo.image.original : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'} />
+                <Card.Img variant="top" src={sneakerInfo.media.imageUrl ? sneakerInfo.media.imageUrl : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'} />
             <Card.Body>
                 <Card.Title className="justify-content-start">{sneakerInfo.name}</Card.Title>
                     <Card.Text>
-                    {sneakerInfo.estimatedMarketValue}$
+                    {sneakerInfo.retailPrice}$
                     </Card.Text>
-                    <Link to={`/Detalle/${sneakerInfo.name}`}><Button> Mas informacion</Button></Link>
+                    <Link to={`/Detalle/${sneakerInfo.id}`}><Button> Mas informacion</Button></Link>
             </Card.Body>
             </Card>
         </div>

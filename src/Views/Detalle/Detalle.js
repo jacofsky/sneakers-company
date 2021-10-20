@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import SneakerCard from '../../Componentes/SneakerCard/SneakerCard';
+import SneakerDetail from '../../Componentes/SneakerDetail/SneakerDetail';
+import axios from "axios";
+
 
 const Detalle = ({match}) => {
 
@@ -11,23 +13,23 @@ const Detalle = ({match}) => {
 
     useEffect(() => {
 
-        fetch("https://v1-sneakers.p.rapidapi.com/v1/sneakers?limit=15", {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "v1-sneakers.p.rapidapi.com",
-                "x-rapidapi-key": "4099edf594msh8d42683ebad3462p157522jsn8560d531c47e"
-	    }
-        })
-        .then(response => console.log(response))
-        .then(data => console.log(data.results))
-        .catch(err => console.error(err));
-
+        const options = {
+            method: 'GET',
+            url: `https://v1-sneakers.p.rapidapi.com/v1/sneakers/${selectedSneaker}`,
+            headers: {
+              'x-rapidapi-host': 'v1-sneakers.p.rapidapi.com',
+              'x-rapidapi-key': '4099edf594msh8d42683ebad3462p157522jsn8560d531c47e'
+            }
+          };
+          
+          axios.request(options).then(response => setSneakerInfo(response.data.results)).catch(error => console.error(error));
+          console.log(sneakerInfo)
     },[])
 
     return (
-        <div>
+        <div className="container">
             <h1>Detalle</h1>
-            {sneakerInfo.map( sneaker => sneaker.name === selectedSneaker ? <SneakerCard key={sneaker.id}  sneakerInfo={sneaker}/> : false )}
+            {sneakerInfo.map(sneaker => <SneakerDetail key={sneaker.id}  sneakerInfo={sneaker}/>)}
         </div>
     )
 }
