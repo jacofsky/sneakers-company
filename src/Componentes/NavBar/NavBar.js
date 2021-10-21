@@ -1,14 +1,16 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./NavBar.css";
 import Carrito from "../Carrito/Carrito.js";
+import {Link} from 'react-router-dom';
+
 
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-sm navbar-light  bg-custom-color">
       <div className="container p-4">
-        <a className="navbar-brand" href="#">
+        <Link to="/" className="navbar-brand" href="#">
           Sneakers Company
-        </a>
+        </Link>
         <button
           className="navbar-toggler d-lg-none"
           type="button"
@@ -23,24 +25,24 @@ const NavBar = () => {
         <div className="collapse navbar-collapse justify-content-between" id="collapsibleNavId">
           <ul className="navbar-nav mr-auto mt-2 mt-lg-0 navBarHover">
             <li className="nav-item mx-2">
-              <a className="nav-link" href="#">
+              <Link to="/" className="nav-link" href="#">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item mx-2">
-              <a className="nav-link" href="#">
+              <Link to={`/Brand/${'Adidas'}`} className="nav-link" href="#">
                 Adidas
-              </a>
+              </Link>
             </li>
             <li className="nav-item mx-2">
-              <a className="nav-link" href="#">
+              <Link to={`/Brand/${'Nike'}`} className="nav-link" href="#">
                 Nike
-              </a>
+              </Link>
             </li>
             <li className="nav-item mx-2">
-              <a className="nav-link" href="#">
-                Yeezys
-              </a>
+              <Link to={`/Brand/${'Jordan'}`} className="nav-link" href="#">
+                Jordan
+              </Link>
             </li>
             
           </ul>

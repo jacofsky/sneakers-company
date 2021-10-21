@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 import Home from './Views/Home/Home.js'
 import Detalle from './Views/Detalle/Detalle.js'
+import Brand from './Views/Brand/Brand.js'
 
 
 class App extends React.Component {
@@ -16,6 +17,8 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/detalle/:id" component={Detalle}/>
+            <Route path="/brand/:brand" component={Brand}/>
+
 
           </Switch>
         </div>
