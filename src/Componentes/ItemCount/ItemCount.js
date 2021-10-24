@@ -3,7 +3,7 @@ import './ItemCount.css';
 import { BsPlusCircleFill, BsDashCircleFill } from "react-icons/bs";
 
 
-const ItemCount = ({stock, initial})  => {
+const ItemCount = ({stock, initial, numProductos})  => {
     
     const [contador, setContador] = useState(initial)
 
@@ -26,7 +26,7 @@ const ItemCount = ({stock, initial})  => {
                 <p>{contador}</p>
                 <button onClick={addOn} className="plusCircle"><BsPlusCircleFill/></button>
             </div>
-            <button className="addBolsa">Agregar al la bolsa</button>
+            <button className="addBolsa" onClick={() => numProductos(contador)}>Agregar al la bolsa</button>
         </div>
     )
    
