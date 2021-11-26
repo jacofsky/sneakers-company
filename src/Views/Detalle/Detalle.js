@@ -5,10 +5,8 @@ import axios from "axios";
 
 const Detalle = ({match}) => {
 
-    console.log(match)
 
     const selectedSneaker = match.params.id;
-
     const [sneakerInfo, setSneakerInfo] = useState([])
 
     useEffect(() => {
@@ -23,7 +21,6 @@ const Detalle = ({match}) => {
           };
           
           axios.request(options).then(response => setSneakerInfo(response.data.results)).catch(error => console.error(error));
-          console.log(sneakerInfo)
     },[])
 
     return (

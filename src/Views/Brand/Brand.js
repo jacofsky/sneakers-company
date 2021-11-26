@@ -9,7 +9,7 @@ const Brand = ({match}) => {
 
     const selectedBrand = match.params.brand;
 
-    console.log(selectedBrand)
+    
 
     const [brandSneakers, setBrandSneakers] = useState([])
     const [loader, setLoader] = useState(true)
@@ -27,7 +27,6 @@ const Brand = ({match}) => {
           };
           
         axios.request(options).then(response => setBrandSneakers(response.data.results)).catch(error => console.error(error));
-        console.log(brandSneakers)
         setLoader(false);
     },[selectedBrand])
 

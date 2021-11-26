@@ -1,17 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import ItemCount from '../ItemCount/ItemCount'
 import {Link} from 'react-router-dom'
 import './SneakerDetail.css'
 
+import { CartContext } from '../../CartContext'
+
 const SneakerDetail = ({sneakerInfo}) => {
 
-    console.log(sneakerInfo)
-
+    const [productos, setProductos, addItems] = useContext(CartContext)
     const [cant, setCant] = useState(0);
 
     const onAdd = (cantidad) => {
         setCant(cantidad)
-        console.log(cantidad)
     }
 
 
@@ -27,7 +27,8 @@ const SneakerDetail = ({sneakerInfo}) => {
                 <p className="text-start">Fecha de salida: {sneakerInfo.releaseDate}</p>
                 <p>${sneakerInfo.retailPrice}</p>
                 <ItemCount stock={12} initial={1} numProductos={cantidad => onAdd(cantidad)}/>
-                {cant ? <Link to={`/Carrito`}><button className="carroActive mt-4">Ir al carro</button></Link> : <button className="carroDisable mt-4" disabled>Ir al carro</button>}
+                {cant ? <Link to={`/Carrito`}><button className="carroActive mt-4" 
+                onClick={() =>{ addItems(sneakerInfo, cant)}}>Ir al carro</button></Link> : <button className="carroDisable mt-4" disabled>Ir al carro</button>}
             </div>
         </div>
     )

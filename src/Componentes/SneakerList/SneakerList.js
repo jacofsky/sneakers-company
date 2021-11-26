@@ -22,8 +22,6 @@ const SneakerList = () => {
           };
           
           axios.request(options).then(response => setSneakers(response.data.results)).catch(error => console.error(error));
-
-          console.log(sneakers)
           setLoader(false);
     }, [])
     

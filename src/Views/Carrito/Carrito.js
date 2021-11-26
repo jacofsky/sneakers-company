@@ -1,9 +1,19 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { CartContext } from '../../CartContext'
+import CarritoCard from '../../Componentes/CarritoCard/CarritoCard'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Carrito = () => {
+
+    const [productos] = useContext(CartContext)
+
     return (
-        <div>
-            <h1>Carrito</h1>
+        <div className="container">
+
+            {
+                productos.map(producto => <CarritoCard itemInfo={producto}/>)
+            }
+            
         </div>
     )
 }
