@@ -20,7 +20,7 @@ const SneakerList = () => {
               'x-rapidapi-key': '4099edf594msh8d42683ebad3462p157522jsn8560d531c47e'
             }
           };
-          
+        
           axios.request(options).then(response => setSneakers(response.data.results)).catch(error => console.error(error));
           setLoader(false);
     }, [])

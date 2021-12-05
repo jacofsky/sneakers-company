@@ -17,7 +17,7 @@ class App extends React.Component {
         <CartProvider>
       <Router>
         <div className="App">
-          <NavBar />
+          <NavBar/>
           <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/detalle/:id" component={Detalle}/>

@@ -1,7 +1,7 @@
 .carritoButton{
     background-color: transparent;
     border: 0 solid transparent;
-    
+    position: relative;
 }
 
 .carrito{
@@ -13,4 +13,14 @@
 
 .carritoButton:hover .carrito{
     color: rgba(67, 255, 230, 0.979);
+}
+
+.carritoItems{
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    border-radius: 1rem;
+    background-color: rgb(255, 38, 38) !important; 
+    color: rgb(255, 255, 255);
+
 }

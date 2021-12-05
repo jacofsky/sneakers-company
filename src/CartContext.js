@@ -37,12 +37,9 @@ export const CartProvider = ({children}) => {
         setProductos(productos.filter(item => item.id !== id))
     }
 
-    const total = () => {
-        for (let i = 0; i < productos.length; i++) {
-            const element = array[i];
-            
-        }
-    }
+    
+
+  
 
     const clear = () => {
         setProductos([])
