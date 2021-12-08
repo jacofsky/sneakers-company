@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import SneakerDetail from '../../Componentes/SneakerDetail/SneakerDetail';
-import axios from "axios";
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
+
 
 
 const Detalle = ({match}) => {
@@ -11,16 +13,22 @@ const Detalle = ({match}) => {
 
     useEffect(() => {
 
-        const options = {
-            method: 'GET',
-            url: `https://v1-sneakers.p.rapidapi.com/v1/sneakers/${selectedSneaker}`,
-            headers: {
-              'x-rapidapi-host': 'v1-sneakers.p.rapidapi.com',
-              'x-rapidapi-key': '4099edf594msh8d42683ebad3462p157522jsn8560d531c47e'
-            }
-          };
+        
+
+        const requestSneaker = async () => {
+            const docs =[]
+            const q = query(collection(db, 'Sneakers'), where('title', '==', selectedSneaker))
+            const sneakers = await getDocs(q)
+
+            sneakers.forEach((document) => {
+                console.log(document.data(), document.id)
+                docs.push({...document.data(), id: document.id})
+            })
+            setSneakerInfo(docs)
+        }
+        requestSneaker()
           
-          axios.request(options).then(response => setSneakerInfo(response.data.results)).catch(error => console.error(error));
+        
     },[])
 
     return (

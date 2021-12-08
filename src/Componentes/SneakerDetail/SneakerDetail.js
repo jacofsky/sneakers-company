@@ -7,11 +7,14 @@ import { CartContext } from '../../CartContext'
 
 const SneakerDetail = ({sneakerInfo}) => {
 
-    const [productos, setProductos, addItems] = useContext(CartContext)
+    const {productos, setProductos, addItems} = useContext(CartContext)
     const [cant, setCant] = useState(0);
 
     const onAdd = (cantidad) => {
         setCant(cantidad)
+        if(cant > 0){
+            addItems(sneakerInfo, cant)
+        }
     }
 
 
@@ -26,9 +29,9 @@ const SneakerDetail = ({sneakerInfo}) => {
                 <p className="text-start">Marca: {sneakerInfo.brand}</p>
                 <p className="text-start">Fecha de salida: {sneakerInfo.releaseDate}</p>
                 <p>${sneakerInfo.retailPrice}</p>
-                <ItemCount stock={12} initial={1} numProductos={cantidad => onAdd(cantidad)}/>
-                {cant ? <Link to={`/Carrito`}><button className="carroActive mt-4" 
-                onClick={() =>{ addItems(sneakerInfo, cant)}}>Ir al carro</button></Link> : <button className="carroDisable mt-4" disabled>Ir al carro</button>}
+                <ItemCount stock={sneakerInfo.cantidad} initial={1} numProductos={cantidad => onAdd(cantidad)}/>
+                {productos.length > 0 ? <Link to={`/Carrito`}><button className="carroActive mt-4" 
+                >Ir al carro</button></Link> : <button className="carroDisable mt-4" disabled>Ir al carro</button>}
             </div>
         </div>
     )

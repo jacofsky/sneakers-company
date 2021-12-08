@@ -1,33 +1,34 @@
 import React, {useState, useEffect} from 'react'
-import axios from "axios";
 import {Spinner} from 'react-bootstrap'; 
 import SneakerCard from '../../Componentes/SneakerCard/SneakerCard'
-
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 
 const Brand = ({match}) => {
 
     const selectedBrand = match.params.brand;
-
-    
-
     const [brandSneakers, setBrandSneakers] = useState([])
     const [loader, setLoader] = useState(true)
 
 
     useEffect(() => {
-        const options = {
-            method: 'GET',
-            url: `https://v1-sneakers.p.rapidapi.com/v1/sneakers`,
-            params: {limit: '10', brand: `${selectedBrand}`},
-            headers: {
-              'x-rapidapi-host': 'v1-sneakers.p.rapidapi.com',
-              'x-rapidapi-key': '4099edf594msh8d42683ebad3462p157522jsn8560d531c47e'
-            }
-          };
           
-        axios.request(options).then(response => setBrandSneakers(response.data.results)).catch(error => console.error(error));
-        setLoader(false);
+      const requestSneaker = async () => {
+          const docs =[]
+          const q = query(collection(db, 'Sneakers'), where('brand', '==', selectedBrand))
+          const sneakers = await getDocs(q)
+
+          sneakers.forEach((document) => {
+              console.log(document.data(), document.id)
+              docs.push({...document.data(), id: document.id})
+          })
+          setBrandSneakers(docs)
+      }
+      requestSneaker()
+
+      
+      setLoader(false);
     },[selectedBrand])
 
     return (

@@ -5,8 +5,7 @@ export const CartContext = createContext();
 export const CartProvider = ({children}) => {
 
     const [productos, setProductos] = useState([])
-
-    
+    const [cant, setCant] = useState(0)
 
     const addItems = (item, cant) => {
         let confirmacion = isInCart(item.id)
@@ -37,16 +36,28 @@ export const CartProvider = ({children}) => {
         setProductos(productos.filter(item => item.id !== id))
     }
 
+    const sneakersLength = () => {
+        let cant = 0;
+        productos.forEach((i) => (cant += i.cant));
+        setCant(cant);
+        return cant;
+    };
     
-
-  
-
     const clear = () => {
         setProductos([])
     }
 
     return(
-        <CartContext.Provider value={[productos, setProductos, addItems, removeItem, clear]}>
+        <CartContext.Provider 
+        value={{
+            productos: productos,
+            sneakersLength: sneakersLength,
+            addItems: addItems,
+            removeItem: removeItem,
+            clear: clear,
+            cant: cant,
+            
+          }}>
             {children}
         </CartContext.Provider>
     )

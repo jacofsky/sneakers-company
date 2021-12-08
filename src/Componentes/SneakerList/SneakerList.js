@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react'
 import SneakerCard from '../SneakerCard/SneakerCard.js'
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Spinner} from 'react-bootstrap'; 
-import axios from "axios"; 
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase.js';
 
 
 const SneakerList = () => {
@@ -11,18 +12,22 @@ const SneakerList = () => {
     const [loader, setLoader] = useState(true)
 
     useEffect(() => {
-        const options = {
-            method: 'GET',
-            url: 'https://v1-sneakers.p.rapidapi.com/v1/sneakers',
-            params: {limit: '30'},
-            headers: {
-              'x-rapidapi-host': 'v1-sneakers.p.rapidapi.com',
-              'x-rapidapi-key': '4099edf594msh8d42683ebad3462p157522jsn8560d531c47e'
-            }
-          };
         
-          axios.request(options).then(response => setSneakers(response.data.results)).catch(error => console.error(error));
-          setLoader(false);
+
+        const requestSneaker = async() => {
+            const docs =[]
+            const sneakers = await getDocs(collection(db, 'Sneakers'))
+            sneakers.forEach((document) => {
+                console.log(document.data(), document.id)
+                docs.push({...document.data(), id: document.id})
+            })
+            console.log(docs)
+            setSneakers(docs)
+        }
+        requestSneaker()
+        
+        
+        setLoader(false);
     }, [])
     
 

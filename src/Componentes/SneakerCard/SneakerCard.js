@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 
 const SneakerCard = ({sneakerInfo}) => {
+    console.log(sneakerInfo)
     return (
         <div className="sneakerCard col-12 col-md-3 py-2">
             <Card style={{ width: '18rem', margin: '0 auto' }}>
@@ -17,7 +18,7 @@ const SneakerCard = ({sneakerInfo}) => {
                     <Card.Text>
                     {sneakerInfo.retailPrice}$
                     </Card.Text>
-                    <Link to={`/Detalle/${sneakerInfo.id}`}><Button> Mas informacion</Button></Link>
+                    <Link to={`/Detalle/${sneakerInfo.title}`}><Button> Mas informacion</Button></Link>
             </Card.Body>
             </Card>
         </div>

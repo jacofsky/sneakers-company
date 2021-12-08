@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const CarritoCard = ({itemInfo}) => {
 
-    const [productos, setProductos, addItems, removeItem, clear] = useContext(CartContext)
+    const {productos, setProductos, addItems, removeItem} = useContext(CartContext)
 
     return (
         
